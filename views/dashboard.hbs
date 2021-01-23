@@ -1,3 +1,31 @@
 <h6>Dashboard</h6>
 <h3>Welcome {{name}}</h3>
 <p>Here are your transactions</p>
+{{> _add_btn}}
+
+{{#if transactions}}
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Comment</th>
+        <th>Transaction Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each transactions}}
+      <tr>
+        <td>{{category_Id}}</td>
+        <td>{{amount}}</td>
+        <td>{{date}}</td>
+        <td>{{comment}}</td>
+        <td>{{transaction_group}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+<p>There are no transactions logged yet.</p>
+{{/if}}

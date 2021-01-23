@@ -9,7 +9,6 @@ const TransactionSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  date: Date,
   transaction_group: {
     type: String,
     required: true,
@@ -22,6 +21,14 @@ const TransactionSchema = new mongoose.Schema({
   sub_category_Id: {
     type: mongoose.Schema.ObjectId,
     ref: 'Subcategory'
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
