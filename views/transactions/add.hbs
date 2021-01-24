@@ -1,33 +1,50 @@
 <h3>Add Transaction</h3>
-<div class="row">
-    <form action="/transactions" method="POST" class="col s12">
-        <div class="row">
-            <div class="input-field">
-                <input type="text" id="title" name="title">
-                <label for="title">Title</label>
-            </div>
+<form action="/transactions" method="POST">
+    <div class="row">   
+        <div class="input-field col s12"><i class="material-icons prefix">account_balance_wallet</i>
+            <select class="transaction-group-options">
+                <option value="" selected></option>
+                <option value="1">Expenses</option>
+                <option value="2">Income</option>
+            </select>
+            <label for="transaction_group">Transaction Group</label>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="input-field">
-                <select id="status" name="status">
-                    <option value="public" selected>Public</option>
-                    <option value="private">Private</option>
-                </select>
-                <label for="status">Status</label>
-            </div>
+    <div class="row">   
+        <div class="input-field col s6"><i class="material-icons prefix">label</i>    
+            <input type="text" id="transaction_category" name="transaction_category"class="transaction-category-auto">
+            <label for="transaction_category">Category</label>
         </div>
-
-        <div class="row">
-            <div class="input-field">
-                <h5>Tell Us Your Story:</h5>
-                <textarea id="body" name="body"></textarea>
-            </div>
+        <div class="input-field col s6"><i class="material-icons prefix">label_outline</i>
+            <input type="text" id="transaction_sub_category" name="transaction_sub_category"class="transaction-sub-category-auto">
+            <label for="transaction_sub_category">Sub-Category</label>
         </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6"><i class="material-icons prefix">attach_money</i>
+            <input  id="amount" name="amount"type="number" >
+            <label for="amount">Amount</label>
+        </div>
+        <div class="input-field col s6"><i class="prefix far fa-calendar-alt"></i>
+            <input type="text" class="datepicker" for="date"placeholder="Date">
+            {{!-- <label for="date">Date</label> --}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12"><i class="material-icons prefix">comment</i>
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Leave your comment</label>
+        </div>
+    </div>
 
-        <div class="row">
+    <div class="row">
+        <div class="col s6">
+            <a class="btn-floating waves-effect waves-light red darken-2"><i class="material-icons">add</i></a>
+            </div>
+        <div class="col s6 right-align">
             <input type="submit" value="Save" class="btn">
-            <a href="/dashboard" class="btn orange">Cancel</a>
+            <a href="/dashboard" class="btn orange darken-2">Cancel</a>
         </div>
-    </form>
-</div>
+    </div>
+</form>

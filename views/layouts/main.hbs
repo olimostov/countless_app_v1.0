@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
   <title>CountLess</title>
 </head>
@@ -17,13 +18,102 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
     M.Sidenav.init(document.querySelector('.sidenav'))
-  </script>
-  <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelector('.transaction-group-options');
+    var instances = M.FormSelect.init(elems)});
+
       document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, {coverTrigger: false, closeOnClick: true});
-    instances.isOpen === true ?instances.close():instances.open();
+    var cal = document.querySelector('.datepicker');
+    var calInstances = M.Datepicker.init(cal);
   });
   </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let group = document.querySelector('.transaction-group-auto');
+    let category = document.querySelector('.transaction-category-auto');
+    let subCategory = document.querySelector('.transaction-sub-category-auto');
+    let transactionGroupOptions = {"Expenses": null, "Income": null}
+    let transactionCategoryOptions = {      
+      "Everyday": null,
+      "Education": null,
+      "Entertainment": null,
+      "Child": null,
+      "Gifts": null,
+      "Insurance": null,
+      "Health/medical": null,
+      "Utilities": null,
+      "Home": null,
+      "Technology": null,
+      "Transportation": null,
+      "Travel": null,
+      "Wages": null,
+      "Other": null}
+    let transactionSubCategoryOptions = {
+      "Groceries": null,
+      "Restaurants": null,
+      "Personal Supplies": null,
+      "Clothes": null,
+      "Laundry/detergents": null,
+      "Hair/beauty": null,
+      "Subscriptions": null,
+      "Other": null,
+      "Tuition": null,
+      "Books": null,
+      "Music lessons": null,
+      "Concerts/shows": null,
+      "Games": null,
+      "Hobbies": null,
+      "Movies": null,
+      "Music": null,
+      "Outdoor activities": null,
+      "Photography": null,
+      "Sports": null,
+      "Theater/plays": null,
+      "TV": null,
+      "Activities": null,
+      "School": null,
+      "Books: null, crafts: null, games": null,
+      "Toys": null,
+      "Gifts": null,
+      "Donations (charity)": null,
+      "Car": null,
+      "Health": null,
+      "Doctors/dental/vision": null,
+      "Specialty care": null,
+      "Pharmacy": null,
+      "Supplements": null,
+      "Emergency": null,
+      "Phone": null,
+      "Rent": null,
+      "Internet": null,
+      "Electricity": null,
+      "Heat/gas": null,
+      "Water": null,
+      "Trash": null,
+      "Furnishings": null,
+      "Lawn/garden/plants": null,
+      "Supplies (cleaning etc)": null,
+      "Maintenance": null,
+      "Improvements": null,
+      "Domains & hosting": null,
+      "Online services": null,
+      "Hardware": null,
+      "Software": null,
+      "Gadgets": null,
+      "Electronic equipment": null,
+      "Fuel": null,
+      "Car payments": null,
+      "TAXI": null,
+      "Registration/license": null,
+      "Supplies": null,
+      "Public transit": null
+    }
+    let groupInstance = M.Autocomplete.init(group, {data: transactionGroupOptions});
+    let categoryInstance = M.Autocomplete.init(category, {data: transactionCategoryOptions});
+    let subCategoryInstance = M.Autocomplete.init(subCategory, {data: transactionSubCategoryOptions});
+  });
+</script>
+  
 </body>
 </html>
