@@ -15,7 +15,10 @@ router.get('/', ensureGuest, (req, res) => {
 // @route   GET /dashboard
 router.get('/dashboard', ensureAuth, async (req, res) => {
   try {
-    const transactions = await Transaction.find({ user: req.user.id }).lean();
+    // const transactions = await Transaction.find({ user: req.user.id }).lean();
+    const transactions = await Transaction.find({ user: req.user.id })
+      .populate(['category_Id', 'sub_category_Id', 'user'])
+      .lean();
     res.render('dashboard', {
       name: req.user.firstName,
       transactions

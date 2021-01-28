@@ -1,0 +1,37 @@
+
+    <div class="row">   
+        <div class="input-field col s12"><i class="material-icons prefix">account_balance_wallet</i>
+            <select id="transaction_group" name="transaction_group" class="transaction-group-options">
+                <option value="" disabled selected>Transaction Group</option>
+                <option value="Expenses">Expenses</option>
+                <option value="Income">Income</option>
+            </select>
+            <label for="transaction_group"></label>
+        </div>
+    </div>
+    <div class="row">   
+        <div class="input-field col s6"><i class="material-icons prefix">label</i>    
+            <input type="text" id="transaction_category" name="transaction_category"class="transaction-category-auto">
+            <label for="transaction_category">Category</label>
+        </div>
+        <div class="input-field col s6"><i class="material-icons prefix">label_outline</i>
+            <input type="text" id="transaction_sub_category" name="transaction_sub_category"class="transaction-sub-category-auto">
+            <label for="transaction_sub_category">Sub-Category</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6"><i class="material-icons prefix">attach_money</i>
+            <input id="amount" name="amount"type="number" >
+            <label for="amount">Amount</label>
+        </div>
+        <div class="input-field col s6"><i class="prefix far fa-calendar-alt"></i>
+            <input type="text" class="datepicker" for="date" id="date" name="date" placeholder="Date">
+            {{!-- <label for="date">Date</label> --}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12"><i class="material-icons prefix">comment</i>
+            <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+            <label for="comment">Leave your comment</label>
+        </div>
+    </div>

@@ -1,25 +1,9 @@
 const mongoose = require('mongoose');
 
 const CategorySchema = new mongoose.Schema({
-  title: {
+  category_name: {
     type: String,
-    required: [true, 'Please enter a category'],
-    enum: [
-      'Everyday',
-      'Education',
-      'Entertainment',
-      'Child',
-      'Gifts',
-      'Insurance',
-      'Health/medical',
-      'Utilities',
-      'Home',
-      'Technology',
-      'Transportation',
-      'Travel',
-      'Wages',
-      'Other'
-    ]
+    required: [true, 'Please enter a category']
   }
 });
 
