@@ -156,22 +156,6 @@ router.put('/:id', ensureAuth, async (req, res) => {
   }
 });
 
-//     if (!transaction) {
-//     return res.render('error/404');
-//   } else {
-// transaction = await Transaction.findByIdAndUpdate(
-//   { _id: req.params.id },
-//   req.body,
-//   {
-//     new: true,
-//     runValidators: true
-//   }
-// );
-// console.log(transaction);
-// res.redirect('/dashboard');
-//   }
-// });
-
 // @desc    Delete transaction
 // @route   DELETE /transactions/:id
 router.delete('/:id', ensureAuth, async (req, res) => {
