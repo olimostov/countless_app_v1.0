@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -12,7 +13,26 @@ const connectDB = require('./config/db');
 const colors = require('colors');
 
 // Load config
-dotenv.config({ path: './config/config.env' });
+const configFile = './config/config.env';
+if (fs.existsSync(configFile)) {
+  dotenv.config({ path: configFile });
+  console.log('Loaded configuration file by path', configFile);
+} else {
+  console.log(
+    'No configuration file found by path, using the default environment configuration. Tried path: ',
+    configFile
+  );
+}
+
+// Make sure we have required environment variables
+if (!process.env.MONGO_URI) {
+  console.log(
+    'MONGO_URI environment variable is not set. Please set in file ' +
+      configFile +
+      ' or by other means. Existing...'
+  );
+  return;
+}
 
 // Passport config
 require('./config/passport')(passport);

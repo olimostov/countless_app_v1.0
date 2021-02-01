@@ -18,19 +18,19 @@ router.get('/add', ensureAuth, (req, res) => {
 router.post('/', ensureAuth, async (req, res) => {
   const category = req.body.transaction_category;
   const subCategory = req.body.transaction_sub_category;
+  const newSubCategory = { sub_category_name: subCategory };
   let category_id = '';
   let sub_category_id = '';
   const newCategory = { category_name: category };
-  const newSubCategory = { sub_category_name: subCategory };
+
   console.log(req.body);
   try {
     let categoryInstance = await Category.findOne({ category_name: category });
     if (categoryInstance) {
       category_id = categoryInstance._id;
     } else {
-      await Category.create(newCategory);
-      categoryInstance = await Category.findOne(newCategory);
-      category_id = categoryInstance._id;
+      const categoryCreated = await Category.create(newCategory);
+      category_id = categoryCreated._id;
     }
   } catch (err) {
     console.log(err);
@@ -42,9 +42,8 @@ router.post('/', ensureAuth, async (req, res) => {
     if (subCategoryInstance) {
       sub_category_id = subCategoryInstance._id;
     } else {
-      await Subcategory.create(newSubCategory);
-      subCategoryInstance = await Category.findOne(newSubCategory);
-      sub_category_id = subCategoryInstance._id;
+      const subCategoryCreated = await Subcategory.create(newSubCategory);
+      sub_category_id = subCategoryCreated._id;
     }
   } catch (err) {
     console.log(err);
@@ -86,55 +85,49 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
   } else {
     res.render('transactions/edit', { transaction });
   }
-
-  // if (transaction.user._id != req.user.id) {
-  //   res.redirect('/transactions');
-  // } else {
-  // }
 });
 
-// @desc    Update4 transaction
+// @desc    Update transaction
 // @route   PUT /transactions/:id
 router.put('/:id', ensureAuth, async (req, res) => {
+  let transaction = Transaction.findById(req.params.id).lean();
+  let category = req.body.transaction_category;
+  let subCategory = req.body.transaction_sub_category;
+  let category_id = '';
+  let sub_category_id = '';
+  const newCategory = { category_name: category };
+  const newSubCategory = { sub_category_name: subCategory };
+  console.log(req.body);
   try {
-    let transaction = Transaction.findById(req.params.id).lean();
-    let category = req.body.transaction_category;
-    let subCategory = req.body.transaction_sub_category;
-    let category_id = '';
-    let sub_category_id = '';
-    const newCategory = { category_name: category };
-    const newSubCategory = { sub_category_name: subCategory };
-    console.log(req.body);
-
-    try {
-      let categoryInstance = await Category.findOne({
-        category_name: category
-      });
-      if (categoryInstance) {
-        category_id = categoryInstance._id;
-      } else {
-        await Category.create(newCategory);
-        categoryInstance = await Category.findOne(newCategory);
-        category_id = categoryInstance._id;
-      }
-    } catch (err) {
-      console.log(err);
+    let categoryInstance = await Category.findOne({
+      category_name: category
+    });
+    if (categoryInstance) {
+      category_id = categoryInstance._id;
+    } else {
+      const categoryCreated = await Category.create(newCategory);
+      category_id = categoryCreated._id;
     }
-    try {
-      let subCategoryInstance = await Subcategory.findOne({
-        sub_category_name: subCategory
-      });
-      if (subCategoryInstance) {
-        sub_category_id = subCategoryInstance._id;
-      } else {
-        await Subcategory.create(newSubCategory);
-        subCategoryInstance = await Category.findOne(newSubCategory);
-        sub_category_id = subCategoryInstance._id;
-      }
-    } catch (err) {
-      console.log(err);
-    }
+  } catch (err) {
+    console.log(err);
+  }
 
+  try {
+    let subCategoryInstance = await Subcategory.findOne({
+      sub_category_name: subCategory
+    });
+
+    if (subCategoryInstance) {
+      sub_category_id = subCategoryInstance._id;
+    } else {
+      const subCategoryCreated = await Subcategory.create(newSubCategory);
+      sub_category_id = subCategoryCreated._id;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+
+  try {
     const updatedTransaction = {
       amount: req.body.amount,
       comment: req.body.comment,
@@ -144,6 +137,9 @@ router.put('/:id', ensureAuth, async (req, res) => {
       user: req.user.id,
       date: req.body.date
     };
+
+    console.log(updatedTransaction);
+    console.log(req.body.date);
     transaction = await Transaction.findByIdAndUpdate(
       { _id: req.params.id },
       updatedTransaction,

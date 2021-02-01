@@ -67,7 +67,9 @@
     "TV": null,
     "Activities": null,
     "School": null,
-    "Books: null, crafts: null, games": null,
+    "Books": null, 
+    "crafts": null, 
+    "games": null,
     "Toys": null,
     "Gifts": null,
     "Donations (charity)": null,
@@ -113,7 +115,7 @@
 
   M.Autocomplete.init(category, {data: transactionCategoryOptions});
   M.Autocomplete.init(subCategory, {data: transactionSubCategoryOptions});
-  M.Datepicker.init(calendar, {autoClose: true});
+  M.Datepicker.init(calendar, {autoClose: true}).toString();
   M.FloatingActionButton.init(editFAB, {direction: 'right', hoverEnabled: true})
 </script>
   
