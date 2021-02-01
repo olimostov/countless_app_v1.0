@@ -17,3 +17,6 @@ table {
 .fa-small {
   font-size: 14px !important;
 }
+.autocomplete-content,
+.dropdown-content {
+}
