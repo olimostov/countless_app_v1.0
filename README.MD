@@ -1,8 +1,10 @@
-# Personal Ledger
+# CountLess: Personal Ledger app
 
-This is a simple version of a personal ledger which helps tracking incomes and expenses.
+## Description
 
-# Installation
+This is a simple version of a personal ledger which helps tracking incomes and expenses. User can login to the app using Google profile, create, update and delete information about transactions.
+
+## Download & Installation
 
 1. Clone git repository:
 
@@ -25,3 +27,7 @@ npm run dev
 - `MongoDB`
 - `Handlebars`
 - `Passport.js`
+
+## Hosted on Heroku.com
+
+http://desolate-beyond-38364.herokuapp.com
