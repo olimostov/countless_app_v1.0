@@ -23,6 +23,9 @@ if (fs.existsSync(configFile)) {
     configFile
   );
 }
+// Setting up environment
+// if (process.env.NODE_ENV === 'production') {
+// }
 
 // Make sure we have required environment variables
 if (!process.env.MONGO_URI) {
